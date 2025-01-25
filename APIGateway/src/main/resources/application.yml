@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id: FANTASTIC1-SERVICE
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/fantastic/fox/**
+      - id: FANTASTIC2-SERVICE
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/ap1/v1/**
+server:
+  port: 3333
