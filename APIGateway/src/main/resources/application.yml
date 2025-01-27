@@ -4,13 +4,23 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: FANTASTIC1-SERVICE
-        uri: http://localhost:8081/
+      - id: fantastic-service1
+        uri: lb://FANTASTIC1-SERVICE
         predicates:
         - Path=/fantastic/fox/**
-      - id: FANTASTIC2-SERVICE
-        uri: http://localhost:8082/
+
+
+      - id: fantastic-service2
+        uri: lb://FANTASTIC2-SERVICE
         predicates:
         - Path=/ap1/v1/**
+
+
+      - id: identity-service
+        uri: lb://IDENTITY-SERVICE
+        predicates:
+        - Path=/auth/** 
+
+
 server:
   port: 3333
